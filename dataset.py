@@ -12,7 +12,7 @@ def _load_base_dataset(split: str, data_flag: str = 'pathmnist'):
     DataClass = getattr(__import__('medmnist'), info['python_class'])
     return DataClass(split=split, transform=COMMON_TRANSFORM, download=True)
 
-def get_client_data_loaders(client_id: int, num_clients: int, batch_size: int = 32):
+def get_client_data_loaders(client_id: int, num_clients: int, batch_size: int = 128):
     """
     Loads and partitions the PathMNIST training and validation datasets
     for a specific client.
@@ -42,7 +42,7 @@ def get_client_data_loaders(client_id: int, num_clients: int, batch_size: int = 
     print(f"Client {client_id}: Train samples = {len(client_train_subset)}, Val samples = {len(client_val_subset)}")
     return train_loader, val_loader
 
-def get_global_test_loader(batch_size: int = 32):
+def get_global_test_loader(batch_size: int = 128):
     """
     Loads the entire PathMNIST test dataset for global model evaluation.
     """
