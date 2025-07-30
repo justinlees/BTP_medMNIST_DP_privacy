@@ -10,7 +10,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     dp_config = None
-    learning_rate = 0.0005 # Default learning rate for non-DP
+    learning_rate = 0.001 # Default learning rate for non-DP
 
     if args.privacy == "dp":
         dp_config = {
@@ -19,7 +19,7 @@ if __name__ == "__main__":
             'target_delta': 1e-5,
             'epochs': 5 # Pass local epochs to dp_config if make_private needs it
         }
-        learning_rate = 0.001 # learning rate for DP training
+        learning_rate = 0.0005 # learning rate for DP training
         print(f"DP ENABLED: Learning Rate set to {learning_rate}, DP Config: {dp_config}")
     elif args.privacy == "none":
         print(f"DP DISABLED: Learning Rate set to {learning_rate}")
